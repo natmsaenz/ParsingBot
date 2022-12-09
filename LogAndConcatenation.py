@@ -1,0 +1,59 @@
+import os
+from os import system
+import sys
+import shutil
+from os import walk
+
+#Use to extract all the compress files
+def parsing(dir_path):
+    content = os.listdir(dir_path)
+    #extract de GZ files
+    for name in content:
+        if os.path.splitext(name)[1] in compressed_extension:
+            system(f"7z e -y -o{dir_path} {os.path.join(dir_path,name)}")
+            #os.remove(os.path.join(dir_path,name)) only if it´s necessary to eliminate the compress directory
+#------------------------------------------------------------------------------------------------------------------------
+#Use to make the new paths and put the descompress files with the ID arguments into the new paths
+def dir_new():
+    if len(list_of_arguments) >= folderIDsStart+1:
+        if os.path.exists(targetPath):
+            # Reserve all necessary directories.
+            for i in range(2, len(list_of_arguments)):
+                newDir = os.path.join(targetPath, sys.argv[i])
+                os.mkdir(newDir)
+                dirDict.update({sys.argv[i]: newDir})
+                print(newDir + " created!")
+            # Sort files at path into target directories
+            for (dirPath, dirNames, fileNames) in walk(os.path.join(targetPath, ".")):
+                for name in fileNames:
+                    for key, path in dirDict.items():
+                        if name.find(key) != -1:
+                            shutil.move(os.path.join(dirPath, name), path)
+                            break
+        else:
+            print("ERROR: no valid filesystem path entered!")
+    else:
+        print("Not enough arguments provided, expected: LogSorter.py <path_to_traverse> <ID1> <ID2> (...)")
+        
+####################################################################
+#                                                                  #
+#                           SCRIPT                                 # 
+#                                                                  #
+####################################################################
+
+list_of_arguments = sys.argv
+file_name_to_parse = list_of_arguments[1]
+script_path = os.path.dirname(__file__)
+new_dir_path = os.path.join(script_path,os.path.splitext(file_name_to_parse)[0])
+compressed_extension = '.tar', '.rar', '.zip', '.7z', '.gz' 
+targetPath = sys.argv[1]
+help_PathIndex = 1
+folderIDsStart = 2
+dirDict = {}
+
+if os.path.isdir(file_name_to_parse):
+    parsing(file_name_to_parse)
+    dir_new()
+    print("ok")
+else:
+    parsing(new_dir_path)
