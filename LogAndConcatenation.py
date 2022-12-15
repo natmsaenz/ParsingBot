@@ -34,7 +34,26 @@ def dir_new():
             print("ERROR: no valid filesystem path entered!")
     else:
         print("Not enough arguments provided, expected: LogSorter.py <path_to_traverse> <ID1> <ID2> (...)")
-        
+#----------------------------------------------------------------------------------------------------------------------------
+def DLTtoTXT():
+   dltLabel = ".dlt"
+   dltViewerPath = "C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe"
+   #We need to change the path of the DLT file app, on the next path
+   if(len(sys.argv) ):
+        targetPath = sys.argv[1]
+        if(os.path.exists(targetPath) and os.path.exists(dltViewerPath)):
+            print("Valid target path detected, text iteration starts!")
+            for (dirPath, dirNames, fileNames) in walk(os.path.join(targetPath, ".")):
+                for name in fileNames:
+                    targetFile = os.path.join(dirPath,name)
+                    if dltLabel in targetFile:
+                        os.system("\"" + dltViewerPath + "\"" + " -c " + "-s" + targetFile + " " + targetFile + ".txt")
+    
+        else:
+            print("Invalid target path provided!")
+   else:
+        print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
+print("Everything done")
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -51,8 +70,10 @@ help_PathIndex = 1
 folderIDsStart = 2
 dirDict = {}
 
+
 if os.path.isdir(file_name_to_parse):
     parsing(file_name_to_parse)
+    DLTtoTXT()
     dir_new()
     print("ok")
 else:
