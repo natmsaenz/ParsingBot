@@ -5,7 +5,7 @@ import shutil
 from os import walk
 
 #Use to extract all the compress files
-def parsing(dir_path):
+def decompress(dir_path):
     content = os.listdir(dir_path)
     #extract de GZ files
     for name in content:
@@ -39,7 +39,7 @@ def DLTtoTXT():
    dltLabel = ".dlt"
    dltViewerPath = "C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe"
    #We need to change the path of the DLT file app, on the next path
-   if(len(sys.argv) ):
+   if(len(sys.argv) > 2 ):
         targetPath = sys.argv[1]
         if(os.path.exists(targetPath) and os.path.exists(dltViewerPath)):
             print("Valid target path detected, text iteration starts!")
@@ -48,7 +48,8 @@ def DLTtoTXT():
                     targetFile = os.path.join(dirPath,name)
                     if dltLabel in targetFile:
                         os.system("\"" + dltViewerPath + "\"" + " -c " + "-s" + targetFile + " " + targetFile + ".txt")
-    
+                    else:
+                        print("No .DLT detected")
         else:
             print("Invalid target path provided!")
    else:
@@ -72,9 +73,9 @@ dirDict = {}
 
 
 if os.path.isdir(file_name_to_parse):
-    parsing(file_name_to_parse)
+    decompress(file_name_to_parse)
     DLTtoTXT()
     dir_new()
     print("ok")
 else:
-    parsing(new_dir_path)
+    decompress(new_dir_path)
