@@ -38,15 +38,18 @@ def dir_new():
 def DLTtoTXT():
    dltLabel = ".dlt"
    dltViewerPath = "C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe"
-   #We need to change the path of the DLT file app, on the next path
    if(len(sys.argv) > 2 ):
+        # we assign the target path  to the path put it before
         targetPath = sys.argv[1]
+        #Compare if the target path and de DLTpath exist
         if(os.path.exists(targetPath) and os.path.exists(dltViewerPath)):
             print("Valid target path detected, text iteration starts!")
             for (dirPath, dirNames, fileNames) in walk(os.path.join(targetPath, ".")):
                 for name in fileNames:
                     targetFile = os.path.join(dirPath,name)
+                    #If the file is .dlt
                     if dltLabel in targetFile:
+                        #With the dltviewer app convert from .dlt to .txt
                         os.system("\"" + dltViewerPath + "\"" + " -c " + "-s" + targetFile + " " + targetFile + ".txt")
                     else:
                         print("No .DLT detected")
