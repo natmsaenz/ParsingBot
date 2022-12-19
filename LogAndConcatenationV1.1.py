@@ -33,7 +33,7 @@ def dir_new():
         else:
             print("ERROR: no valid filesystem path entered!")
     else:
-        print("Not enough arguments provided, expected: LogSorter.py <path_to_traverse> <ID1> <ID2> (...)")
+        print("Not enough arguments provided, expected: LogAndConcatenation.py <path_to_traverse> <ID1> <ID2> (...)")
 #----------------------------------------------------------------------------------------------------------------------------
 #Use to convert from .dlt file to .txt file
 def DLTtoTXT():
@@ -75,11 +75,14 @@ help_PathIndex = 1
 folderIDsStart = 2
 dirDict = {}
 
+if len(list_of_arguments) >= folderIDsStart+1:
 
-if os.path.isdir(file_name_to_parse):
-    decompress(file_name_to_parse)
-    DLTtoTXT()
-    dir_new()
-    print("ok")
+    if os.path.isdir(file_name_to_parse):
+        decompress(file_name_to_parse)
+        DLTtoTXT()
+        dir_new()
+        print("ok")
+    else:
+        decompress(new_dir_path)
 else:
-    decompress(new_dir_path)
+    print("Not enough arguments provided, expected: LogAndConcatenation.py <path_to_traverse> <ID1> <ID2> (...)")
