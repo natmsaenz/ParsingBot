@@ -35,6 +35,7 @@ def dir_new():
     else:
         print("Not enough arguments provided, expected: LogSorter.py <path_to_traverse> <ID1> <ID2> (...)")
 #----------------------------------------------------------------------------------------------------------------------------
+#Use to convert from .dlt file to .txt file
 def DLTtoTXT():
    dltLabel = ".dlt"
    dltViewerPath = "C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe"
