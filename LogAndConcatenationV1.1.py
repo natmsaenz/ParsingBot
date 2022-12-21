@@ -63,6 +63,7 @@ def DLTtoTXT():
 print("Everything done")
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
+#Not working yet
 def goThroughTxt():
     read_files = glob.glob("*.txt")
 
@@ -70,6 +71,7 @@ def goThroughTxt():
         for f in read_files:
             with open(f, "rb") as infile:
                 outfile.write(infile.read())
+                print("Ready")
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
