@@ -2,6 +2,8 @@ import os
 from os import system
 import sys
 import shutil
+import glob
+import fileinput
 from os import walk
 
 #Use to extract all the compress files
@@ -59,6 +61,16 @@ def DLTtoTXT():
    else:
         print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
 print("Everything done")
+#------------------------------------------------------------------------------------------------------------------------
+#go through .txt files and save them into another txt file
+def goThroughTxt():
+    read_files = glob.glob("*.txt")
+
+    with open("finalTxt", "wb") as outfile:
+        for f in read_files:
+            with open(f, "rb") as infile:
+                outfile.write(infile.read())
+    
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -80,6 +92,7 @@ if len(list_of_arguments) >= folderIDsStart+1:
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
         DLTtoTXT()
+        goThroughTxt()
         dir_new()
         print("ok")
     else:
