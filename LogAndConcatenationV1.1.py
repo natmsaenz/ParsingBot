@@ -5,6 +5,8 @@ import shutil
 import glob
 import fileinput
 from os import walk
+import glob
+import fileinput
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -61,16 +63,6 @@ def DLTtoTXT():
    else:
         print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
 print("Everything done")
-#------------------------------------------------------------------------------------------------------------------------
-#go through .txt files and save them into another txt file
-def goThroughTxt():
-    read_files = glob.glob("*.txt")
-
-    with open("finalTxt", "wb") as outfile:
-        for f in read_files:
-            with open(f, "rb") as infile:
-                outfile.write(infile.read())
-    
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
