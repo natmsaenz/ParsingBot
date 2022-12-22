@@ -75,7 +75,7 @@ def goThroughTxt():
                 outfile.write(infile.read())
                 print("Ready")
 #-----------------------------------------------------------------------------------------------------------------
-#Use to find the insidence from a input
+#Use to find the insidence from an input
 def insidence():
     errors = []   # The list where we will store results.
     linenum = 0
