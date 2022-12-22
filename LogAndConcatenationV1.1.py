@@ -13,6 +13,7 @@ def decompress(dir_path):
     for name in content:
         if os.path.splitext(name)[1] in compressed_extension:
             system(f"7z e -y -o{dir_path} {os.path.join(dir_path,name)}")
+            #os.system("cls")
             #os.remove(os.path.join(dir_path,name)) only if it´s necessary to eliminate the compress directory
 #------------------------------------------------------------------------------------------------------------------------
 #Use to make the new paths and put the descompress files with the ID arguments into the new paths
@@ -31,6 +32,7 @@ def dir_new():
                     for key, path in dirDict.items():
                         if name.find(key) != -1:
                             shutil.move(os.path.join(dirPath, name), path)
+                            #os.system("cls")
                             break
         else:
             print("ERROR: no valid filesystem path entered!")
@@ -72,6 +74,19 @@ def goThroughTxt():
             with open(f, "rb") as infile:
                 outfile.write(infile.read())
                 print("Ready")
+#-----------------------------------------------------------------------------------------------------------------
+#Use to find the insidence from a input
+def insidence():
+    errors = []   # The list where we will store results.
+    linenum = 0
+    substr = input ("Enter the word to search: ") # Substring to search for.
+    with open ('finalTxt.txt', 'rt') as myfile:
+        for line in myfile:
+            linenum += 1
+            if line.lower().find(substr) != -1:    # if case-insensitive match,
+                errors.append("Line " + str(linenum) + ": " + line.rstrip('\n'))
+    for err in errors:
+        print(err)
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -94,6 +109,7 @@ if len(list_of_arguments) >= folderIDsStart+1:
         decompress(file_name_to_parse)
         DLTtoTXT()
         goThroughTxt()
+        insidence()
         dir_new()
         print("ok")
     else:
