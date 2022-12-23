@@ -55,7 +55,7 @@ def DLTtoTXT():
                     #If the file is .dlt
                     if dltLabel in targetFile:
                         #With the dltviewer app convert from .dlt to .txt
-                        os.system("\"" + dltViewerPath + "\"" + " -c " + "-s" + targetFile + " " + targetFile + ".txt")
+                        os.system("\"" + dltViewerPath + "\"" + " -c " + targetFile + " " + targetFile + ".txt")
                     else:
                         print("No .DLT detected")
         else:
