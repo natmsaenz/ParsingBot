@@ -65,15 +65,15 @@ def DLTtoTXT():
 print("Everything done")
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
-#Not working yet
+#not working yet
+#making test to work
 def goThroughTxt():
     read_files = glob.glob("*.txt")
 
-    with open("finalTxt", "wb") as outfile:
+    with open("finalTxt", "wb") as wfd:
         for f in read_files:
-            with open(f, "rb") as infile:
-                outfile.write(infile.read())
-                print("Ready")
+            with open(f, "rb") as fd:
+                shutil.copyfileobj(fd, wfd)
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
@@ -86,7 +86,8 @@ def insidence():
             if line.lower().find(substr) != -1:    # if case-insensitive match,
                 errors.append("Line " + str(linenum) + ": " + line.rstrip('\n'))
     for err in errors:
-        print(err)
+        with open('insidence.txt', 'w') as f:
+          f.write(err)
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
