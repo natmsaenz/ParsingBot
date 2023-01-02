@@ -2,11 +2,8 @@ import os
 from os import system
 import sys
 import shutil
-import glob
-import fileinput
+
 from os import walk
-import glob
-import fileinput
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -63,6 +60,9 @@ def DLTtoTXT():
    else:
         print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
 print("Everything done")
+#------------------------------------------------------------------------------------------------------------------------
+#go through .txt files and save them into another txt file
+
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
