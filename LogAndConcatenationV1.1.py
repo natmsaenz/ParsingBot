@@ -66,7 +66,7 @@ print("Everything done")
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
 #not working yet
-#making test to work
+#still testing to work
 def goThroughTxt():
     read_files = glob.glob("*.txt")
 
