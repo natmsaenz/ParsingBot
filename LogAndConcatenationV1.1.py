@@ -66,14 +66,18 @@ print("Everything done")
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
 #not working yet
-#still testing to work
-def goThroughTxt():
-    read_files = glob.glob("*.txt")
-
-    with open("finalTxt", "wb") as wfd:
-        for f in read_files:
-            with open(f, "rb") as fd:
-                shutil.copyfileobj(fd, wfd)
+#still testing to work 03/01/23
+def goThroughTxt(dir_path):
+    def merge_text_files(dirname, output_filename):
+        with open(output_filename, 'w') as outfile:
+            for filename in os.listdir(dirname):
+                if filename.endswith('.txt'):
+                    with open(os.path.join(dirname, filename)) as infile:
+                     outfile.write(infile.read())
+    print("Working on it...")
+    merge_text_files(dir_path, 'finalTxt.txt')  
+    shutil.move('finalTxt', targetPath) 
+    print("Done")
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
@@ -86,7 +90,8 @@ def insidence():
             if line.lower().find(substr) != -1:    # if case-insensitive match,
                 errors.append("Line " + str(linenum) + ": " + line.rstrip('\n'))
     for err in errors:
-        with open('insidence.txt', 'w') as f:
+        #print(err) #print all the data in the cmd  
+        with open('insidence.txt', 'w') as f: #print all the find data in a new txt 
           f.write(err)
 ####################################################################
 #                                                                  #
@@ -109,7 +114,7 @@ if len(list_of_arguments) >= folderIDsStart+1:
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
         DLTtoTXT()
-        goThroughTxt()
+        goThroughTxt(file_name_to_parse)
         insidence()
         dir_new()
         print("ok")
