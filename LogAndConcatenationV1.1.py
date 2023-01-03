@@ -52,7 +52,7 @@ def DLTtoTXT():
                     #If the file is .dlt
                     if dltLabel in targetFile:
                         #With the dltviewer app convert from .dlt to .txt
-                        os.system("\"" + dltViewerPath + "\"" + " -c " + "-s" + targetFile + " " + targetFile + ".txt")
+                        os.system("\"" + dltViewerPath + "\"" + " -c " + targetFile + " " + targetFile + ".txt")
                     else:
                         print("No .DLT detected")
         else:
@@ -62,7 +62,33 @@ def DLTtoTXT():
 print("Everything done")
 #------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
+<<<<<<< HEAD
 
+=======
+#not working yet
+#still testing to work
+def goThroughTxt():
+    read_files = glob.glob("*.txt")
+
+    with open("finalTxt", "wb") as wfd:
+        for f in read_files:
+            with open(f, "rb") as fd:
+                shutil.copyfileobj(fd, wfd)
+#-----------------------------------------------------------------------------------------------------------------
+#Use to find the insidence from an input
+def insidence():
+    errors = []   # The list where we will store results.
+    linenum = 0
+    substr = input ("Enter the word to search: ") # Substring to search for.
+    with open ('finalTxt.txt', 'rt') as myfile:
+        for line in myfile:
+            linenum += 1
+            if line.lower().find(substr) != -1:    # if case-insensitive match,
+                errors.append("Line " + str(linenum) + ": " + line.rstrip('\n'))
+    for err in errors:
+        with open('insidence.txt', 'w') as f:
+          f.write(err)
+>>>>>>> 328a768b4dfbc1725f27bc38f42128d69eb72f30
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
