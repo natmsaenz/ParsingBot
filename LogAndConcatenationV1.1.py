@@ -3,8 +3,7 @@ from os import system
 import sys
 import shutil
 from os import walk
-import glob
-import fileinput
+from io import open
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -13,7 +12,7 @@ def decompress(dir_path):
     for name in content:
         if os.path.splitext(name)[1] in compressed_extension:
             system(f"7z e -y -o{dir_path} {os.path.join(dir_path,name)}")
-            #os.system("cls")
+            os.system("cls")
             #os.remove(os.path.join(dir_path,name)) only if it´s necessary to eliminate the compress directory
 #------------------------------------------------------------------------------------------------------------------------
 #Use to make the new paths and put the descompress files with the ID arguments into the new paths
@@ -32,7 +31,7 @@ def dir_new():
                     for key, path in dirDict.items():
                         if name.find(key) != -1:
                             shutil.move(os.path.join(dirPath, name), path)
-                            #os.system("cls")
+                            os.system("cls")
                             break
         else:
             print("ERROR: no valid filesystem path entered!")
@@ -55,44 +54,44 @@ def DLTtoTXT():
                     #If the file is .dlt
                     if dltLabel in targetFile:
                         #With the dltviewer app convert from .dlt to .txt
-                        os.system("\"" + dltViewerPath + "\"" + " -c " + targetFile + " " + targetFile + ".txt")
+                        os.system("\"" + dltViewerPath + "\"" + " -c "  + targetFile + " " + targetFile + ".txt")
                     else:
                         print("No .DLT detected")
         else:
             print("Invalid target path provided!")
    else:
         print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
-print("Everything done")
+
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
-#not working yet
-#still testing to work 03/01/23
-def goThroughTxt(dir_path):
-    def merge_text_files(dirname, output_filename):
-        with open(output_filename, 'w') as outfile:
-            for filename in os.listdir(dirname):
-                if filename.endswith('.txt'):
-                    with open(os.path.join(dirname, filename)) as infile:
-                     outfile.write(infile.read())
-    print("Working on it...")
-    merge_text_files(dir_path, 'finalTxt.txt')  
-    shutil.move('finalTxt', targetPath) 
-    print("Done")
+def goThroughTxt(dirname, output_filename):
+    with open(output_filename, 'w') as outfile: #we open the new txt file to write on it
+        for filename in os.listdir(dirname):
+            if filename.endswith('.txt'):
+                 with open(os.path.join(dirname, filename), errors='ignore') as infile:
+                    print("Working on it...")
+                    os.system("cls")
+                    outfile.write(infile.read())
+                    #shutil.move('finalTxt.txt', targetPath) 
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
-    errors = []   # The list where we will store results.
-    linenum = 0
-    substr = input ("Enter the word to search: ") # Substring to search for.
-    with open ('finalTxt.txt', 'rt') as myfile:
-        for line in myfile:
-            linenum += 1
-            if line.lower().find(substr) != -1:    # if case-insensitive match,
-                errors.append("Line " + str(linenum) + ": " + line.rstrip('\n'))
-    for err in errors:
-        #print(err) #print all the data in the cmd  
-        with open('insidence.txt', 'w') as f: #print all the find data in a new txt 
-          f.write(err)
+    # Open the txt file
+    with open('finalTxt.txt', 'r') as f:
+        content = f.readlines()
+    #Substring to search for.
+    insidence = input('Enter the word to search: ')
+    # create a list for the coincidences
+    coincidences = []
+    for line in content:
+        if insidence in line:
+            coincidences.append(line)
+    # we open the new txt file and write on it with all the insidence
+    with open('insidence.txt', 'w') as f:
+        for coincidence in coincidences:
+            f.write(coincidence)
+    shutil.move('insidence.txt', targetPath)
+    shutil.move('finalTxt.txt', targetPath) 
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -114,10 +113,10 @@ if len(list_of_arguments) >= folderIDsStart+1:
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
         DLTtoTXT()
-        goThroughTxt(file_name_to_parse)
+        goThroughTxt(file_name_to_parse, 'finalTxt.txt')
         insidence()
         dir_new()
-        print("ok")
+        print("Everything done")
     else:
         decompress(new_dir_path)
 else:
