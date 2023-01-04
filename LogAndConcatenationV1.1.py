@@ -116,7 +116,7 @@ if len(list_of_arguments) >= folderIDsStart+1:
         goThroughTxt(file_name_to_parse, 'finalTxt.txt')
         insidence()
         dir_new()
-        print("Everything done")
+        print("Everything done") 
     else:
         decompress(new_dir_path)
 else:
