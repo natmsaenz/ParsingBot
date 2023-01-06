@@ -11,7 +11,7 @@ def decompress(dir_path):
     #extract de GZ files
     for name in content:
         if os.path.splitext(name)[1] in compressed_extension:
-            system(f"7z e -y -o{dir_path} {os.path.join(dir_path,name)}")
+            system(f"7z e -y -o{dir_path} {os.path.join(dir_path,name)}") #Debug
             os.system("cls")
             #os.remove(os.path.join(dir_path,name)) only if it´s necessary to eliminate the compress directory
 #------------------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ def dir_new():
                 for name in fileNames:
                     for key, path in dirDict.items():
                         if name.find(key) != -1:
-                            shutil.move(os.path.join(dirPath, name), path)
+                            shutil.move(os.path.join(dirPath, name), path) #debug
                             os.system("cls")
                             break
         else:
