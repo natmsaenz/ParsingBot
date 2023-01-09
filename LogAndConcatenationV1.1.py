@@ -31,7 +31,7 @@ def dir_new():
                     for key, path in dirDict.items():
                         if name.find(key) != -1:
                             shutil.move(os.path.join(dirPath, name), path) #debug
-                            os.system("cls")
+                            #os.system("cls")
                             break
         else:
             print("ERROR: no valid filesystem path entered!")
