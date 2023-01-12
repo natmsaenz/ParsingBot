@@ -4,7 +4,6 @@ import sys
 import shutil
 from os import walk
 from io import open
-import glob
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -66,17 +65,14 @@ def DLTtoTXT():
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
 #testing the changes, not working yet
-#The code it´s not working with this changes
 def goThroughTxt(dirname, output_filename):
-    read_files = glob.glob("*.txt")
     with open(output_filename, 'w') as outfile: #we open the new txt file to write on it
-        for filename in read_files:
+        for filename in os.listdir(dirname):
             if filename.endswith('.txt'):
                  with open(os.path.join(dirname, filename), errors='ignore') as infile:
                     print("Working on it...")
                     os.system("cls")
-                    outfile.write(infile.read())
-                    shutil.move('finalTxt.txt', targetPath)  
+                    outfile.write(infile.read())   
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
