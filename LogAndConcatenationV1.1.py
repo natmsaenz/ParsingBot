@@ -4,6 +4,7 @@ import sys
 import shutil
 from os import walk
 from io import open
+import glob
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -66,20 +67,20 @@ def DLTtoTXT():
 #go through .txt files and save them into another txt file
 #testing the changes, not working yet
 def goThroughTxt(dirname, output_filename):
+    read_files = glob.glob("*.txt")
     with open(output_filename, 'w') as outfile: #we open the new txt file to write on it
-        for filename in os.listdir(dirname):
-            #testing
-            #if filename.endswith('.gz'):
-             #   print("not a valid file!")
-             #if filename.endswith('.zip'):
-              #  print("not a valid file!")
+        for filename in read_files:
             if filename.endswith('.txt'):
                  with open(os.path.join(dirname, filename), errors='ignore') as infile:
                     print("Working on it...")
                     os.system("cls")
                     outfile.write(infile.read())
                     shutil.move('finalTxt.txt', targetPath) 
-            
+
+
+
+
+
         
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
