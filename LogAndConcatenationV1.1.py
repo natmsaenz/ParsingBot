@@ -66,6 +66,7 @@ def DLTtoTXT():
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
 #testing the changes, not working yet
+#The code it´s not working with this changes
 def goThroughTxt(dirname, output_filename):
     read_files = glob.glob("*.txt")
     with open(output_filename, 'w') as outfile: #we open the new txt file to write on it
@@ -75,13 +76,7 @@ def goThroughTxt(dirname, output_filename):
                     print("Working on it...")
                     os.system("cls")
                     outfile.write(infile.read())
-                    shutil.move('finalTxt.txt', targetPath) 
-
-
-
-
-
-        
+                    shutil.move('finalTxt.txt', targetPath)  
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
