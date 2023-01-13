@@ -4,6 +4,7 @@ import sys
 import shutil
 from os import walk
 from io import open
+import glob
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -72,7 +73,9 @@ def goThroughTxt(dirname, output_filename):
                  with open(os.path.join(dirname, filename), errors='ignore') as infile:
                     print("Working on it...")
                     os.system("cls")
-                    outfile.write(infile.read())   
+                    outfile.write(infile.read())
+                    shutil.move('finalTxt.txt', targetPath) 
+
 #-----------------------------------------------------------------------------------------------------------------
 #Use to find the insidence from an input
 def insidence():
@@ -91,7 +94,6 @@ def insidence():
         for coincidence in coincidences:
             f.write(coincidence)
     shutil.move('insidence.txt', targetPath)
-    shutil.move('finalTxt.txt', targetPath) 
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
