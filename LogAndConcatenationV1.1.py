@@ -5,7 +5,6 @@ import shutil
 from os import walk
 from io import open
 
-
 #Use to extract all the compress files
 def decompress(dir_path):
     content = os.listdir(dir_path)
@@ -65,35 +64,23 @@ def DLTtoTXT():
 
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
-#testing the changes, not working yet
-def goThroughTxt(dirname, output_filename):
-    with open(output_filename, 'w') as outfile: #we open the new txt file to write on it
-        for filename in os.listdir(dirname):
-            if filename.endswith('.txt'):
-                 with open(os.path.join(dirname, filename), errors='ignore') as infile:
-                    print("Working on it...")
-                    os.system("cls")
-                    outfile.write(infile.read())
-                    shutil.move('finalTxt.txt', targetPath) 
-
-#-----------------------------------------------------------------------------------------------------------------
-#Use to find the insidence from an input
-def insidence():
-    # Open the txt file
-    with open('finalTxt.txt', 'r') as f: 
-        content = f.readlines()
-    #Substring to search for.
+#Almost done
+def goThroughTxt(dir_path):
     insidence = input('Enter the word to search: ')
-    # create a list for the coincidences
-    coincidences = []
-    for line in content:
-        if insidence in line:
-            coincidences.append(line)
-    # we open the new txt file and write on it with all the insidence
-    with open('insidence.txt', 'w') as f:
-        for coincidence in coincidences:
-            f.write(coincidence)
-    shutil.move('insidence.txt', targetPath)
+    for file in os.listdir(dir_path):
+        cur_path = os.path.join(dir_path, file)
+        # check if it is a file
+        if os.path.isfile(cur_path):
+            with open(cur_path, 'r', errors="ignore") as file:
+            # read all content of a file and search string
+                if insidence in file.read():
+                    with open('insidence.txt', 'w') as f:
+                     for insidence in insidence:
+                         f.write(insidence)
+                    shutil.move('insidence.txt', targetPath)
+                    #shutil.move('finalTxt.txt', targetPath)
+                       
+
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -115,8 +102,7 @@ if len(list_of_arguments) >= folderIDsStart+1:
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
         DLTtoTXT()
-        goThroughTxt(file_name_to_parse, 'finalTxt.txt')
-        insidence()
+        goThroughTxt(file_name_to_parse)
         dir_new()
         print("Everything done") 
     else:
