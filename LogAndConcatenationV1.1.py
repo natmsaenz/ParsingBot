@@ -4,6 +4,8 @@ import sys
 import shutil
 from os import walk
 from io import open
+import glob
+import re
 
 #Use to extract all the compress files
 def decompress(dir_path):
@@ -64,22 +66,27 @@ def DLTtoTXT():
 
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
-#Almost done
+#testing the changes, working
 def goThroughTxt(dir_path):
-    insidence = input('Enter the word to search: ')
-    for file in os.listdir(dir_path):
-        cur_path = os.path.join(dir_path, file)
-        # check if it is a file
-        if os.path.isfile(cur_path):
-            with open(cur_path, 'r', errors="ignore") as file:
-            # read all content of a file and search string
-                if insidence in file.read():
-                    with open('insidence.txt', 'w') as f:
-                     for insidence in insidence:
-                         f.write(insidence)
-                    shutil.move('insidence.txt', targetPath)
-                    #shutil.move('finalTxt.txt', targetPath)
-                       
+    keyword = input('Enter the word to search: ')
+    # output name
+    output_file = 'insidence.txt'
+    # we set the outfile on write mode
+    with open(output_file, 'w') as out:
+        for filename in os.listdir(dir_path):
+            if filename.endswith('.txt'):
+                # we open all the .txt files on read mode
+                with open(os.path.join(dir_path, filename), 'r', errors="ignore") as f:
+                    lines = f.readlines()
+                    matches = 0
+                    for line in lines:
+                        if keyword in line:
+                            out.write(f'{line}')
+                            matches += 1
+                    # we write the coincidences on the outfile
+                    out.write(f'{matches} matches found on: {filename}\n')
+    shutil.move('insidence.txt', targetPath)
+    
 
 ####################################################################
 #                                                                  #
