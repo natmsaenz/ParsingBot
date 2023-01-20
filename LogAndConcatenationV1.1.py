@@ -4,8 +4,6 @@ import sys
 import shutil
 from os import walk
 from io import open
-import glob
-import re
 
 #Use to extract all the compress files
 def decompress(dir_path):
