@@ -103,7 +103,6 @@ folderIDsStart = 2
 dirDict = {}
 
 if len(list_of_arguments) >= folderIDsStart+1:
-
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
         DLTtoTXT()
