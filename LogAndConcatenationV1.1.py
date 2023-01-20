@@ -61,10 +61,8 @@ def DLTtoTXT():
             print("Invalid target path provided!")
    else:
         print("Number of passed arguments is:", len(sys.argv), " expecting: 2")
-
 #------------------------------------------------------------------------------------------------------------------------------
 #go through .txt files and save them into another txt file
-#testing the changes, working
 def goThroughTxt(dir_path):
     keyword = input('Enter the word to search: ')
     # output name
@@ -84,8 +82,6 @@ def goThroughTxt(dir_path):
                     # we write the coincidences on the outfile
                     out.write(f'{matches} matches found on: {filename}\n')
     shutil.move('insidence.txt', targetPath)
-    
-
 ####################################################################
 #                                                                  #
 #                           SCRIPT                                 # 
@@ -101,7 +97,7 @@ targetPath = sys.argv[1]
 help_PathIndex = 1
 folderIDsStart = 2
 dirDict = {}
-
+#------------------------------------------------------------------------------------------
 if len(list_of_arguments) >= folderIDsStart+1:
     if os.path.isdir(file_name_to_parse):
         decompress(file_name_to_parse)
