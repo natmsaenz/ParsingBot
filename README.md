@@ -9,6 +9,7 @@ All this in a single script and while moving the files to an specific directory.
 
 *******Requirements to use the script*******
 -Having the DLTViewer app installed, the script works with the 2.17.0 stable version. For the script to work, the DLTViewer has to be located on this path: C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe
+***(If you don´t have the DLTviewer app, you can download from this package)***
 -
 -Having the latest version of Python installed*.
 -Having the 7z software installed
