@@ -39,7 +39,7 @@ def dir_new():
         else:
             print("ERROR: no valid filesystem path entered!")
     else:
-        print("Not enough arguments provided, expected: LogAndConcatenation.py <path_to_traverse> <ID1> <ID2> (...)")
+        print("Not enough arguments provided, expected: LogAndConcatenation.py <path_to_traverse>")
 #----------------------------------------------------------------------------------------------------------------------------
 #Use to convert from .dlt file to .txt file
 def DLTtoTXT():
