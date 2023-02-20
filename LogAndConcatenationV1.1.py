@@ -32,8 +32,9 @@ def dir_new():
                     for key, path in dirDict.items():
                         if name.find(key) != -1:
                             shutil.move(os.path.join(dirPath, name), os.path.join(path, name))
-                            #shutil.copytree(os.path.join(dirPath, name), path,dirs_exist_ok=True) #debug
-                            #os.remove(os.path.join(dirPath, name))
+                            #Not used
+                                #shutil.copytree(os.path.join(dirPath, name), path,dirs_exist_ok=True) #debug
+                                #os.remove(os.path.join(dirPath, name))
                             break
         else:
             print("ERROR: no valid filesystem path entered!")
