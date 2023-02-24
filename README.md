@@ -1,17 +1,18 @@
 # ParsingBot
 
 This project was created for Bosch México Audio triage team. With different modules in it, this script will help us to:
--Decompress files into an specific path
--Create new paths so we can decompress files into them
--Convert .dlt files into .txt files so we can handle them more easily
--Compress all the .txt files into one for our convenience
--Detect incidences from an input
+
+- Decompress files into an specific path
+- Create new paths so we can decompress files into them
+- Convert .dlt files into .txt files so we can handle them more easily
+- Compress all the .txt files into one for our convenience
+- Detect incidences from an input
 All this in a single script and while moving the files to an specific directory.
 
 ## Requirements to use the script
 
 - Having the DLTViewer app installed, the script works with the 2.17.0 stable version. For the script to work, the DLTViewer has to be located on this path: C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe
-- *If you don´t have the DLTviewer app, you can download from this package:* https://inside-docupedia.bosch.com/confluence/display/gen3generic/DLT-viewer
+- *If you don´t have the DLTviewer app, you can download from this package:*  https://inside-docupedia.bosch.com/confluence/display/gen3generic/DLT-viewer
 - Before using the script, you have to extract the files of the folder you downloaded, for example:
 ! [screenshot for the extraction example](C:\Users\MNA2GA\Documents\ParsingBot\exampleScreenshot_1.jpg)
 __
