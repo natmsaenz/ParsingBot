@@ -29,7 +29,7 @@ def create_new_folders(target_path: str):
         else:
             print("ERROR: no valid filesystem path entered!")
     else:
-        print("Not enough arguments provided, expected: LogAndConcatenation.py <path_to_traverse>")
+        print("Not enough arguments provided, expected: ParsingBot.py <path_to_traverse>")
 
 
 def convert_file(target_path: str, from_extension: str = ".dlt", to_extension: str = ".txt"):

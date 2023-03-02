@@ -15,7 +15,7 @@ def load_settings(keyword: str = "ALL"):
         settings_file.close()
 
         DLT_VIEWER_PATH = settings["DLT_VIEWER_PATH"] if "DLT_VIEWER_PATH" in settings else DEFAULT_DLT_VIEWER_PATH
-        FOLDERS_TO_CREATE = settings["FOLDERS_TO_CREATE"] if "FOLDERS_TO_CREATE" in settings else DEFAULT_FOLDERS_TO_CREATE
+        FOLDERS_TO_CREATE = settings["FOLDERS_TO_CREATE"] if "FOLDERS_TO_CREATE" in settings and len(settings["FOLDERS_TO_CREATE"])>0 else DEFAULT_FOLDERS_TO_CREATE
         INCIDENCE_KEYWORD = settings["INCIDENCE_KEYWORD"] if "INCIDENCE_KEYWORD" in settings else None
         HAS_BEEN_SCHEDULED = settings["HAS_BEEN_SCHEDULED"] if "HAS_BEEN_SCHEDULED" in settings else False
         SCHEDULE_TIME = settings["SCHEDULE_TIME"] if "SCHEDULE_TIME" in settings else None
