@@ -14,7 +14,7 @@ All this in a single script and while moving the files to an specific directory.
 
 *******How to use the script*******
 -Once we have the DLTViewer app installed, it's important to change the dltviewerpath (line 44 of the script), on the DLTtoTXT module using the path where the app was installed.
--Open the Windows Command prompt and write the command for python, the name of the script, the path of the file to decompress and its arguments (the names of the folders where the final decompressed files will be stored), like the next example:
- *py LogAndConcatenation.py TargetPath arguments(paths ID1, ID2....)*
+-Open the Windows Command prompt and write the command for python, the name of the script, the path of the file to decompress. like the next example:
+ *py ParsingBot.py TargetPath*
  
 
