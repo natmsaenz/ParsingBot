@@ -1,7 +1,0 @@
-{
-    "FOLDERS_TO_CREATE": ["CriticalSoc", "Soc", "Vip", "ISVS", "PATACHMI"],
-    "INCIDENCE_KEYWORD": "fatal",
-    "SCHEDULE_TIME": "23:00",
-    "SCHEDULE_DAY": "DAILY",
-    "DLT_VIEWER_PATH": "C:/Program Files (x86)/dltviewer/DltViewerSDK_2.18.2_6.0.5/dlt_viewer.exe"
-}
