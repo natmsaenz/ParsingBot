@@ -12,12 +12,14 @@ def create_new_folders(target_path: str):
         if path.exists(target_path):
             # Reserve all necessary directories.
             for folder in FOLDERS_TO_CREATE:
+                folder_exists = path.exists(path.join(target_path, folder))
                 new_dir = path.join(target_path, folder)
-                mkdir(new_dir)
-
                 directories.update({folder: new_dir})
+                if not folder_exists:
+                    mkdir(new_dir)
 
-                print(f"{new_dir} created!")
+
+                    print(f"{new_dir} created!")
             # Sort files at path into target directories
             for (file_path, _, file_names) in walk(path.join(target_path, ".")):
                 for name in file_names:
@@ -37,16 +39,15 @@ def convert_file(target_path: str, from_extension: str = ".dlt", to_extension: s
 
     if(path.exists(target_path) and path.exists(DLT_VIEWER_PATH)):
         print("Valid target path detected, text iteration starts!")
-        for (dirPath, _, fileNames) in walk(path.join(target_path, ".")):
+        for (dirPath, _, fileNames) in walk(target_path):
             for name in fileNames:
                 target_file = path.join(dirPath, name)
                 # If the file is .dlt
-                if from_extension in target_file:
-                    # With the dltviewer app convert from .dlt to .txt
+
+                if target_file.endswith(from_extension):
+                     # With the dltviewer app convert from .dlt to .txt
                     system(
-                        f"\{DLT_VIEWER_PATH}\ -c {target_file} {target_file}{to_extension}")
-                else:
-                    print("No .DLT detected")
+                        f'"{DLT_VIEWER_PATH}" -c {target_file} {target_file}{to_extension}')
     else:
         print("Invalid target path provided!")
 
