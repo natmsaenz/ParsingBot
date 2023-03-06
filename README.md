@@ -28,7 +28,7 @@ This project was created for Bosch México Audio triage team. With different mod
  `py ParsingBot.py TargetPath`
 -You should always put the command *py* before running any python script, after that, you put the name of the script: ParsingBot.py.Always make sure your script is on the correct location when you use it, for example:
 
-[Example screenshot](C:\Users\MNA2GA\Documents\ParsingBot\Miscellaneous images\example_3.jpg)
+[Example screenshot](C:\Users\MNA2GA\Documents\ParsingBot\ParsingBot\Miscellaneous images\example_3.jpg)
 -*In this case, the script is located in the C:\Users\MNA2GA\Documents\ParsingBot folder, so we'll run it that way*
 -*And finally, add the TargetPath, which is the path of the folder you want to decompress with the script*
 -And that's it! now you just have to wait for the script to do its job and you'll have all the files decompressed and converted in their specified locations, and an incidence file with all the keywords to search.
