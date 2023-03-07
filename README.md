@@ -30,6 +30,3 @@ __
 _In this case, the script is located in the C:\Users\MNA2GA folder, so we'll run it that way_
 
 - **And finally, add the _TargetPath_ which is the path of the folder you want to decompress with the script**
- 
- 
-
