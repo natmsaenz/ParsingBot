@@ -3,8 +3,11 @@
 This project was created for Bosch México Audio triage team. With different modules in it, it will help us to:
 
 -Decompress files into an specific path.
+
 -Convert .dlt files into .txt files so we can handle them more easily.
+
 -Create new folders to sort the decompressed files into them, each corresponding to the file and folder name.
+
 -Find the incidences of a keyword and save them in a text file.
 
 ## Requirements to use the script
