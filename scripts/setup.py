@@ -3,7 +3,7 @@ from os import path
 
 DEFAULT_DLT_VIEWER_PATH = "C:\Program Files (x86)\dltviewer\DltViewerSDK\dlt_viewer.exe"
 DEFAULT_FOLDERS_TO_CREATE = ["CriticalSoc", "Soc", "Vip", "ISVS", "PATACHMI"]
-
+DEFAULT_FILE_EXTENSIONS = [".log", ".txt"]
 
 def load_settings(keyword: str = "ALL"):
     script_path = path.dirname(__file__)
@@ -16,7 +16,8 @@ def load_settings(keyword: str = "ALL"):
 
         DLT_VIEWER_PATH = settings["DLT_VIEWER_PATH"] if "DLT_VIEWER_PATH" in settings else DEFAULT_DLT_VIEWER_PATH
         FOLDERS_TO_CREATE = settings["FOLDERS_TO_CREATE"] if "FOLDERS_TO_CREATE" in settings and len(settings["FOLDERS_TO_CREATE"])>0 else DEFAULT_FOLDERS_TO_CREATE
-        INCIDENCE_KEYWORD = settings["INCIDENCE_KEYWORD"] if "INCIDENCE_KEYWORD" in settings else None
+        FILE_EXTENSIONS = settings["FILE_EXTENSIONS"] if "FILE_EXTENSIONS" in settings and len(settings["FILE_EXTENSIONS"])>0 else DEFAULT_FILE_EXTENSIONS
+        INCIDENCE_KEYWORD = settings["INCIDENCE_KEYWORD"] if "INCIDENCE_KEYWORD" in settings else []
         HAS_BEEN_SCHEDULED = settings["HAS_BEEN_SCHEDULED"] if "HAS_BEEN_SCHEDULED" in settings else False
         SCHEDULE_TIME = settings["SCHEDULE_TIME"] if "SCHEDULE_TIME" in settings else None
         SCHEDULE_DAY = settings["SCHEDULE_DAY"] if "SCHEDULE_DAY" in settings else None
@@ -24,7 +25,8 @@ def load_settings(keyword: str = "ALL"):
     else:
         DLT_VIEWER_PATH = DEFAULT_DLT_VIEWER_PATH
         FOLDERS_TO_CREATE = DEFAULT_FOLDERS_TO_CREATE
-        INCIDENCE_KEYWORD = None
+        FILE_EXTENSIONS = DEFAULT_FILE_EXTENSIONS 
+        INCIDENCE_KEYWORD = []
         HAS_BEEN_SCHEDULED = False
         SCHEDULE_TIME = None
         SCHEDULE_DAY = None
@@ -35,6 +37,8 @@ def load_settings(keyword: str = "ALL"):
         return FOLDERS_TO_CREATE
     elif (keyword == "INCIDENCE_KEYWORD"):
         return INCIDENCE_KEYWORD
+    elif (keyword == "FILE_EXTENSIONS"):
+        return FILE_EXTENSIONS
     elif (keyword == "HAS_BEEN_SCHEDULED"):
         return HAS_BEEN_SCHEDULED
     elif (keyword == "SCHEDULE_TIME"):
@@ -42,4 +46,4 @@ def load_settings(keyword: str = "ALL"):
     elif (keyword == "SCHEDULE_DAY"):
         return SCHEDULE_TIME
 
-    return DLT_VIEWER_PATH, FOLDERS_TO_CREATE, INCIDENCE_KEYWORD, HAS_BEEN_SCHEDULED, SCHEDULE_TIME, SCHEDULE_DAY
+    return DLT_VIEWER_PATH, FOLDERS_TO_CREATE, INCIDENCE_KEYWORD, FILE_EXTENSIONS, HAS_BEEN_SCHEDULED, SCHEDULE_TIME, SCHEDULE_DAY
