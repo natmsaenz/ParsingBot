@@ -14,7 +14,7 @@ if __name__ == "__main__":
         if path.isdir(target_path):
             decompress_files_from_path(target_path)
             
-            if (args_len > 1):
+            if (args_len >= 1):
                 convert_DLT_to_TXT(target_path)
             else:
                 print("Number of passed arguments is:",

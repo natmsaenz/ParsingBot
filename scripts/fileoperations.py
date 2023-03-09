@@ -58,9 +58,10 @@ def find_incidence(target_path: str, output_file: str = "incidence.txt"):
         "INCIDENCE_KEYWORD") else input('Enter the word to search: ')
 
     with open(output_file, 'w') as out:
-        ext = [".log", ".txt"]
+        ext = load_settings("EXTENSIONS")
+        ext_list = str(ext).split(',')
         for filename in listdir(target_path):
-            if filename.endswith(tuple(ext)):
+             if filename.endswith(tuple(ext_list)):
                 # we open all the .txt files on read mode
                 with open(path.join(target_path, filename), 'r', errors="ignore") as f:
                     lines = f.readlines()
