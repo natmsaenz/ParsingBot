@@ -1,3 +1,4 @@
+import re
 from shutil import copy2, move
 from os import path, listdir, mkdir, remove, system, walk
 from .setup import load_settings
@@ -54,8 +55,13 @@ def convert_DLT_to_TXT(target_path: str, from_extension: str = ".dlt", to_extens
 
 
 def find_incidence(target_path: str, output_file: str = "incidence.txt"):
-    keywords = load_settings("INCIDENCE_KEYWORD") if load_settings(
-        "INCIDENCE_KEYWORD") else str(input('Enter the word to search: ')).split()
+    INCIDENCE_KEYWORD = load_settings("INCIDENCE_KEYWORD")
+
+    if (INCIDENCE_KEYWORD):
+        keywords = [INCIDENCE_KEYWORD if type(INCIDENCE_KEYWORD) == str else " ".join(INCIDENCE_KEYWORD).replace(" ", "|")]
+    else:
+        keywords =  str(input('Enter the word to search: ')).split()
+
     FILE_EXTENSIONS = load_settings("FILE_EXTENSIONS")
     with open(output_file, 'w') as out:
         for filename in listdir(target_path):
@@ -65,9 +71,9 @@ def find_incidence(target_path: str, output_file: str = "incidence.txt"):
                     lines = f.readlines()
                     matches = 0
                     # we write the coincidences on the outfile
-                    for keyword in keywords:    
+                    for keyword in keywords:
                         for line in lines:
-                            if keyword in line:
+                            if re.findall(keyword,line):
                                 out.write(f'{line}')
                                 matches += 1
                     out.write(f'{matches} matches found on: {filename}\n')
