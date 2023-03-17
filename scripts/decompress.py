@@ -13,5 +13,5 @@ def decompress_files_from_path(target_path: str):
         file_extension = path.splitext(file_name)[1]
         if file_extension in COMPRESSED_FILE_EXTENSIONS:
             system(
-                f"7z e -y -o{target_path} {path.join(target_path,file_name)}")
+                f"7z e -y -o\"{target_path}\" \"{path.join(target_path,file_name)}\"")
             cls()
